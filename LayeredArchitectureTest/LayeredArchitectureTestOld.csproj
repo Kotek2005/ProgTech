@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LayeredArchitecture\LayeredArchitecture.csproj" />
+    <ProjectReference Include="..\LayeredArchitecture\LayeredArchitectureOld.csproj" />
   </ItemGroup>
 
 </Project>
