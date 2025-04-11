@@ -8,7 +8,7 @@ using DataLayer;
 
 namespace LogicLayer
 {
-    internal class Supply_class
+    public class Supply_class
     {
         private readonly IEvents Events;
 
@@ -17,10 +17,11 @@ namespace LogicLayer
             Events = events;
         }
 
-        bool Supply(string product, int amount)
+        public bool Supply(string product, int amount)
         {
-            float surprise = Events.GetPrice(product) * amount * (1 / 3); //hehe cuz sup-price
+            float surprise = Events.GetPrice(product) * amount * (float)0.3; //hehe cuz sup-price
             surprise = (float)Math.Round(surprise, 2);
+            Console.WriteLine(surprise);
             bool havemoney = Events.CheckMoney(surprise);
             if (!havemoney)
                 return false;

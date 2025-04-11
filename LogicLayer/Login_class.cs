@@ -10,7 +10,7 @@ namespace LogicLayer
         {
             Events = events;
         }
-        char Login(int id)
+        public char Login(int id)
         {
             string usertype;
             char worker;
@@ -21,7 +21,7 @@ namespace LogicLayer
                 worker = 'c';
             return worker;
         }
-        bool CanBuy(char user)
+        public bool CanBuy(char user)
         {
             bool yesbuy = false;
             if (user == 'c')
@@ -29,7 +29,7 @@ namespace LogicLayer
             return yesbuy;
         }
 
-        bool CanSupply(char user)
+        public bool CanSupply(char user)
         {
             bool yessupply = false;
             if (user == 's')
