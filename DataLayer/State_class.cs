@@ -9,14 +9,39 @@ namespace DataLayer
 {
     internal class State_class
     {
-        Dictionary<string, int> inventory;
-        float cash;
+        private Dictionary<string, int> inventory;
+        private float cash=0;
 
-        void Add2State(string name, int amount)
+        public bool CheckStock(string product, int amount)
+        {
+            int wegot = inventory[product];
+            if (amount <= wegot)
+                return true;
+            else
+                return false;
+        }
+        public void Add2State(string name, int amount)
         {
             inventory.Add(name, amount);
         }
 
-        float GetCash() { return cash; }
+        public bool CheckMoney(float price)
+        {
+            float money = cash;
+            if (price <= money)
+                return true;
+            else
+                return false;
+        }
+
+        public void AddStock(string product, int amount)
+        {
+            inventory[product] += amount;
+        }
+
+        public void AddMoney(float profit)
+        {
+            cash += profit;
+        }
     }
 }

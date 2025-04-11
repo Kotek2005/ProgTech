@@ -4,10 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DataLayer;
+
 namespace LogicLayer
 {
     internal class Buy_class
     {
+        private readonly IEvents Events;
+
+        public Buy_class(IEvents events)
+        {
+            Events = events;
+        }
+
         bool Buy(string product, int amount)
         {
             bool isinstock = Events.CheckStock(product, amount);

@@ -8,9 +8,13 @@ namespace DataLayer
 {
     internal class Catalog_class
     {
-        Dictionary<string, float> prices;
+        private Dictionary<string, float> prices;
 
-        void Add2Cat(string name, float price)
+        public float GetPrice(string product)
+        {
+            return prices[product];
+        }
+        public void Add2Cat(string name, float price)
         {
             prices.Add(name, price);
         }

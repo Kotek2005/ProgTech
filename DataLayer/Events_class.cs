@@ -6,44 +6,69 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    internal class Events_class
+
+    public interface IEvents
     {
-        string FindUser(int id)
+        string FindUser(int id);
+        float GetPrice(string product);
+        bool CheckStock(string product, int amount);
+        bool CheckMoney(float price);
+        void AddStock(string product, int amount);
+        void AddMoney(float amount);
+        void Add2Cat(string product, float price);
+        void Add2Users(int id, string name);
+        void Add2State(string product, int amount);
+    }
+
+    public class Events_class : IEvents
+    {
+        private Users_class users = new();
+        private State_class state = new();
+        private Catalog_class catalog = new();
+
+        public string FindUser(int id)
         {
-            return Users_class.users[id];
+            return users.FindUser(id);
         }
 
-        bool CheckStock(string product, int amount)
+        public bool CheckStock(string product, int amount)
         {
-            int wegot = State_class.inventory[product];
-            if (amount <= wegot)
-                return true;
-            else
-                return false;
+            return state.CheckStock(product, amount);
         }
 
-        bool CheckMoney(float price)
+        public bool CheckMoney(float price)
         {
-            float money = State_class.GetCash();
-            if (price <= money)
-                return true;
-            else
-                return false;
+            return state.CheckMoney(price);
         }
 
-        float GetPrice(string product)
+        public float GetPrice(string product)
         {
-            return Catalog_class.prices[product];
+            return catalog.GetPrice(product);
         }
 
-        void AddMoney(float profit)
+        public void AddMoney(float profit)
         {
-            State_class.cash += profit;
+            state.AddMoney(profit);
         }
 
-        void AddStock(string product, int amount)
+        public void AddStock(string product, int amount)
         {
-            State_class.inventory[product] += amount;
+            state.AddStock(product, amount);
+        }
+
+
+        public void Add2Cat(string product, float price) 
+        { 
+            catalog.Add2Cat(product, price);
+        }
+
+        public void Add2Users(int id, string type)
+        {
+            users.Add2Users(id, type);
+        }
+        public void Add2State(string product, int amount)
+        {
+            state.Add2State(product, amount);
         }
     }
 }

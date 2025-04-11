@@ -4,10 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DataLayer;
+
 namespace LogicLayer
 {
     internal class Supply_class
     {
+        private readonly IEvents Events;
+
+        public Supply_class(IEvents events)
+        {
+            Events = events;
+        }
+
         bool Supply(string product, int amount)
         {
             float surprise = Events.GetPrice(product) * amount * (1 / 3); //hehe cuz sup-price

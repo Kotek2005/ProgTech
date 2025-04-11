@@ -2,13 +2,18 @@
 
 namespace DataLayer
 {
-    public class Users_class
+    internal class Users_class
     {
-        Dictionary<int, string> users;
+        private Dictionary<int, string> users;
 
-        void Add2Users(int ID, string type)
+        public void Add2Users(int ID, string type)
         {
             users.Add(ID, type);
+        }
+
+        public string FindUser(int id)
+        {
+            return users[id];
         }
     }
 }
