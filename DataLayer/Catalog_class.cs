@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    internal class Catalog
+    internal class Catalog_class
     {
+        Dictionary<string, float> prices;
+
+        void Add2Cat(string name, float price)
+        {
+            prices.Add(name, price);
+        }
     }
 }
