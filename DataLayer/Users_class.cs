@@ -4,7 +4,7 @@ namespace DataLayer
 {
     internal class Users_class
     {
-        private Dictionary<int, string> users;
+        private Dictionary<int, string> users = new();
 
         public void Add2Users(int ID, string type)
         {

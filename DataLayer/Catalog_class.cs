@@ -8,7 +8,7 @@ namespace DataLayer
 {
     internal class Catalog_class
     {
-        private Dictionary<string, float> prices;
+        private Dictionary<string, float> prices = new();
 
         public float GetPrice(string product)
         {

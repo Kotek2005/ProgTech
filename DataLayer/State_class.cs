@@ -9,7 +9,7 @@ namespace DataLayer
 {
     internal class State_class
     {
-        private Dictionary<string, int> inventory;
+        private Dictionary<string, int> inventory = new();
         private float cash=0;
 
         public bool CheckStock(string product, int amount)
