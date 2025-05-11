@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTest", "DataTest\DataTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicTest", "LogicTest\LogicTest.csproj", "{924B8778-CB48-431C-96CC-51EA24B83771}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{7CEBDEE7-DA24-4420-9D40-95AF8B4105DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{924B8778-CB48-431C-96CC-51EA24B83771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{924B8778-CB48-431C-96CC-51EA24B83771}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{924B8778-CB48-431C-96CC-51EA24B83771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CEBDEE7-DA24-4420-9D40-95AF8B4105DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CEBDEE7-DA24-4420-9D40-95AF8B4105DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CEBDEE7-DA24-4420-9D40-95AF8B4105DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CEBDEE7-DA24-4420-9D40-95AF8B4105DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
