@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ShopDataLINQ.dbml">
+    <None Update="DataClassesSQL.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ShopDataLINQ.designer.cs</LastGenOutput>
+      <LastGenOutput>DataClassesSQL.designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
