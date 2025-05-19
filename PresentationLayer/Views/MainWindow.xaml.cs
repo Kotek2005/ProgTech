@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PresentationLayer.ViewModels;
+using DataLayer;
 
 namespace PresentationLayer;
 
@@ -20,6 +21,11 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        
+        // Initialize the database
+        DatabaseInitializer.Initialize();
+        
+        // Set up the view model
         DataContext = new MainViewModel();
     }
 }
