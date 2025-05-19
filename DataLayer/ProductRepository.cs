@@ -11,20 +11,20 @@ public class ProductRepository : IProductRepository
 
     public List<Product> GetAll()
     {
-        using var context = new ShopDataDataContext(_connStr);
+        using var context = new DataClassesSQLDataContext(_connStr);
         return context.Products.ToList();
     }
 
     public void Add(Product p)
     {
-        using var context = new ShopDataDataContext(_connStr);
+        using var context = new DataClassesSQLDataContext(_connStr);
         context.Products.InsertOnSubmit(p);
         context.SubmitChanges();
     }
 
     public void Update(Product p)
     {
-        using var context = new ShopDataDataContext(_connStr);
+        using var context = new DataClassesSQLDataContext(_connStr);
         var item = context.Products.FirstOrDefault(x => x.Id == p.Id);
         if (item != null)
         {
@@ -37,7 +37,7 @@ public class ProductRepository : IProductRepository
 
     public void Delete(int id)
     {
-        using var context = new ShopDataDataContext(_connStr);
+        using var context = new DataClassesSQLDataContext(_connStr);
         var item = context.Products.FirstOrDefault(x => x.Id == id);
         if (item != null)
         {
