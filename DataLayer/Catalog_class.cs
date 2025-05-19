@@ -18,5 +18,10 @@ namespace DataLayer
         {
             prices.Add(name, price);
         }
+
+        public Dictionary<string, float> GetAllProducts()
+        {
+            return prices;
+        }
     }
 }

@@ -80,12 +80,14 @@ namespace PresentationLayer.ViewModels
 
         private void RefreshState()
         {
-            // This is a placeholder - in a real implementation, you would get the state from the database
             Inventory.Clear();
-            // Add some sample inventory for now
-            Inventory.Add(new StateModel { product = "Apple", amount = 10, cash = 100.0f });
-            Inventory.Add(new StateModel { product = "Banana", amount = 15, cash = 100.0f });
-            CurrentCash = 100.0f;
+            // Get inventory from Events_class
+            var inventory = _events.GetAllInventory();
+            foreach (var item in inventory)
+            {
+                Inventory.Add(new StateModel { product = item.Key, amount = item.Value });
+            }
+            CurrentCash = _events.GetCurrentCash();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -69,11 +69,13 @@ namespace PresentationLayer.ViewModels
 
         private void RefreshProducts()
         {
-            // This is a placeholder - in a real implementation, you would get the products from the database
             Products.Clear();
-            // Add some sample products for now
-            Products.Add(new ProductModel { name = "Apple", price = 2.50f });
-            Products.Add(new ProductModel { name = "Banana", price = 3.40f });
+            // Get products from Events_class
+            var products = _events.GetAllProducts();
+            foreach (var product in products)
+            {
+                Products.Add(new ProductModel { name = product.Key, price = product.Value });
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

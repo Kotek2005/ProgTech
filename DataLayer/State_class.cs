@@ -43,5 +43,15 @@ namespace DataLayer
         {
             cash += profit;
         }
+
+        public Dictionary<string, int> GetAllInventory()
+        {
+            return inventory;
+        }
+
+        public float GetCurrentCash()
+        {
+            return cash;
+        }
     }
 }

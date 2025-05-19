@@ -18,6 +18,10 @@ namespace DataLayer
         void Add2Cat(string product, float price);
         void Add2Users(int id, string name);
         void Add2State(string product, int amount);
+        Dictionary<int, string> GetAllUsers();
+        Dictionary<string, float> GetAllProducts();
+        Dictionary<string, int> GetAllInventory();
+        float GetCurrentCash();
     }
 
     public class Events_class : IEvents
@@ -69,6 +73,26 @@ namespace DataLayer
         public void Add2State(string product, int amount)
         {
             state.Add2State(product, amount);
+        }
+
+        public Dictionary<int, string> GetAllUsers()
+        {
+            return users.GetAllUsers();
+        }
+
+        public Dictionary<string, float> GetAllProducts()
+        {
+            return catalog.GetAllProducts();
+        }
+
+        public Dictionary<string, int> GetAllInventory()
+        {
+            return state.GetAllInventory();
+        }
+
+        public float GetCurrentCash()
+        {
+            return state.GetCurrentCash();
         }
     }
 }

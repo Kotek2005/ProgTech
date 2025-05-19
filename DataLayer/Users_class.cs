@@ -15,5 +15,10 @@ namespace DataLayer
         {
             return users[id];
         }
+
+        public Dictionary<int, string> GetAllUsers()
+        {
+            return users;
+        }
     }
 }

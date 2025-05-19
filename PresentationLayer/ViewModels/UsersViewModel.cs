@@ -71,11 +71,13 @@ namespace PresentationLayer.ViewModels
 
         private void RefreshUsers()
         {
-            // This is a placeholder - in a real implementation, you would get the users from the database
             Users.Clear();
-            // Add some sample users for now
-            Users.Add(new UserModel { id = 1, type = "Supplier" });
-            Users.Add(new UserModel { id = 2, type = "Customer" });
+            // Get users from Events_class
+            var users = _events.GetAllUsers();
+            foreach (var user in users)
+            {
+                Users.Add(new UserModel { id = user.Key, type = user.Value });
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
