@@ -23,9 +23,9 @@
 
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
                         <TextBlock Text="ID:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding UsersViewModel.NewUserId}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding UsersViewModel.NewUserId, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <TextBlock Text="Type:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding UsersViewModel.NewUserType}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding UsersViewModel.NewUserType, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <Button Content="Add User" Command="{Binding UsersViewModel.AddUserCommand}"/>
                     </StackPanel>
 
@@ -47,9 +47,9 @@
 
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
                         <TextBlock Text="Name:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding CatalogViewModel.NewProductName}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding CatalogViewModel.NewProductName, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <TextBlock Text="Price:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding CatalogViewModel.NewProductPrice}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding CatalogViewModel.NewProductPrice, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <Button Content="Add Product" Command="{Binding CatalogViewModel.AddProductCommand}"/>
                     </StackPanel>
 
