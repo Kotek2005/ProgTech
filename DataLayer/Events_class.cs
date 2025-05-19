@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace DataLayer
 {
@@ -29,7 +30,11 @@ namespace DataLayer
 
         public Events_class()
         {
-            _db = new ShopDataBaseDataContext(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ShopDatabase.mdf;Integrated Security=True");
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string dataDir = Path.GetFullPath(Path.Combine(baseDir, "..\\..\\..\\DataLayer"));
+            string dbPath = Path.Combine(dataDir, "DataShop.mdf");
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True";
+            _db = new ShopDataBaseDataContext(connectionString);
         }
 
         public string FindUser(int id)
