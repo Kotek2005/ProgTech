@@ -9,9 +9,7 @@ namespace PresentationLayer.ViewModels
     {
         private readonly IEvents _events;
         private ObservableCollection<UserModel> _users;
-        private int _selectedUserId;
-        private string _selectedUserType;
-        private int _newUserId;
+        private UserModel _selectedUser;
         private string _newUserType;
 
         public UsersViewModel(IEvents events)
@@ -32,14 +30,13 @@ namespace PresentationLayer.ViewModels
             }
         }
 
-        public int NewUserId
+        public UserModel SelectedUser
         {
-            get => _newUserId;
+            get => _selectedUser;
             set
             {
-                _newUserId = value;
-                OnPropertyChanged(nameof(NewUserId));
-                CommandManager.InvalidateRequerySuggested();
+                _selectedUser = value;
+                OnPropertyChanged(nameof(SelectedUser));
             }
         }
 
@@ -58,21 +55,21 @@ namespace PresentationLayer.ViewModels
 
         private void AddUser()
         {
-            _events.Add2Users(NewUserId, NewUserType);
+            // Generate new ID based on existing users
+            int newId = Users.Count > 0 ? Users.Max(u => u.id) + 1 : 1;
+            _events.Add2Users(newId, NewUserType);
             RefreshUsers();
-            NewUserId = 0;
             NewUserType = string.Empty;
         }
 
         private bool CanAddUser()
         {
-            return NewUserId > 0 && !string.IsNullOrWhiteSpace(NewUserType);
+            return !string.IsNullOrWhiteSpace(NewUserType);
         }
 
         private void RefreshUsers()
         {
             Users.Clear();
-            // Get users from Events_class
             var users = _events.GetAllUsers();
             foreach (var user in users)
             {
