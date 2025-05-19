@@ -123,17 +123,23 @@ namespace DataLayer
 
         public Dictionary<int?, string> GetAllUsers()
         {
-            return _db.Users.ToDictionary(u => u.Id, u => u.Type);
+            return _db.Users
+                .Where(u => u.Id != null && u.Type != null)
+                .ToDictionary(u => u.Id, u => u.Type);
         }
 
-        public Dictionary<string, float> GetAllProducts()
+        public Dictionary<string?, float> GetAllProducts()
         {
-            return _db.Catalogs.ToDictionary(c => c.Product, c => (float)c.Price);
+            return _db.Catalogs
+                .Where(c => c.Product != null && c.Price != null)
+                .ToDictionary(c => c.Product, c => (float)c.Price);
         }
 
-        public Dictionary<string, int> GetAllInventory()
+        public Dictionary<string?, int> GetAllInventory()
         {
-            return _db.States.ToDictionary(s => s.Product, s => s.Amount ?? 0);
+            return _db.States
+                .Where(s => s.Product != null && s.Amount != null)
+                .ToDictionary(s => s.Product, s => s.Amount ?? 0);
         }
 
         public float GetCurrentCash()

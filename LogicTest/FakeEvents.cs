@@ -11,9 +11,9 @@ namespace LogicTest
 {
     internal class FakeEvents : IEvents
     {
-        private Dictionary<int,string> users = new();
-        private Dictionary<string,int> state = new();
-        private Dictionary<string,float> catalog = new();
+        private Dictionary<int?, string> users = new();
+        private Dictionary<string?, int> state = new();
+        private Dictionary<string?, float> catalog = new();
         float cash = (float)20.0;
 
         public string FindUser(int id)
@@ -50,7 +50,6 @@ namespace LogicTest
             state[product] += amount;
         }
 
-
         public void Add2Cat(string product, float price)
         {
             catalog.Add(product, price);
@@ -60,22 +59,23 @@ namespace LogicTest
         {
             users.Add(id, type);
         }
+
         public void Add2State(string product, int amount)
         {
             state.Add(product, amount);
         }
 
-        public Dictionary<int, string> GetAllUsers()
+        public Dictionary<int?, string> GetAllUsers()
         {
             return users;
         }
 
-        public Dictionary<string, float> GetAllProducts()
+        public Dictionary<string?, float> GetAllProducts()
         {
             return catalog;
         }
 
-        public Dictionary<string, int> GetAllInventory()
+        public Dictionary<string?, int> GetAllInventory()
         {
             return state;
         }
