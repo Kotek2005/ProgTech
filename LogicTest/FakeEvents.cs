@@ -64,5 +64,25 @@ namespace LogicTest
         {
             state.Add(product, amount);
         }
+
+        public Dictionary<int, string> GetAllUsers()
+        {
+            return users;
+        }
+
+        public Dictionary<string, float> GetAllProducts()
+        {
+            return catalog;
+        }
+
+        public Dictionary<string, int> GetAllInventory()
+        {
+            return state;
+        }
+
+        public float GetCurrentCash()
+        {
+            return cash;
+        }
     }
 }
