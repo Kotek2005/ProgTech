@@ -67,6 +67,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -81,7 +82,22 @@
                         <Button Content="Add Stock" Command="{Binding StateViewModel.AddStockCommand}"/>
                     </StackPanel>
 
-                    <DataGrid Grid.Row="2" ItemsSource="{Binding StateViewModel.Inventory}" AutoGenerateColumns="False">
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Select Product:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ComboBox ItemsSource="{Binding StateViewModel.Inventory}" 
+                                  SelectedValue="{Binding StateViewModel.SelectedProduct}"
+                                  SelectedValuePath="product"
+                                  DisplayMemberPath="product"
+                                  Width="100" Margin="0,0,10,0"/>
+                        <TextBlock Text="Buy Amount:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <TextBox Text="{Binding StateViewModel.BuyAmount}" Width="100" Margin="0,0,10,0"/>
+                        <Button Content="Buy" Command="{Binding StateViewModel.BuyCommand}" Margin="0,0,10,0"/>
+                        <TextBlock Text="Supply Amount:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <TextBox Text="{Binding StateViewModel.SupplyAmount}" Width="100" Margin="0,0,10,0"/>
+                        <Button Content="Supply" Command="{Binding StateViewModel.SupplyCommand}"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="3" ItemsSource="{Binding StateViewModel.Inventory}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Product" Binding="{Binding product}"/>
                             <DataGridTextColumn Header="Amount" Binding="{Binding amount}"/>
