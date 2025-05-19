@@ -49,7 +49,7 @@
                         <TextBlock Text="Name:" VerticalAlignment="Center" Margin="0,0,5,0"/>
                         <TextBox Text="{Binding CatalogViewModel.NewProductName, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <TextBlock Text="Price:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding Cata<TextBox Text="{Binding CatalogViewModel.NewProductPrice, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="100" Margin="0,0,10,0"/>logViewModel.NewProductPrice, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding CatalogViewModel.NewProductPrice, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="100" Margin="0,0,10,0"/>logViewModel.NewProductPrice, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <Button Content="Add Product" Command="{Binding CatalogViewModel.AddProductCommand}"/>
                     </StackPanel>
 
