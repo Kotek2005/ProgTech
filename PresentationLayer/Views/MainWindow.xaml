@@ -8,10 +8,6 @@
         mc:Ignorable="d"
         Title="Shop Management System" Height="600" Width="1000">
     
-    <Window.DataContext>
-        <viewmodels:MainViewModel/>
-    </Window.DataContext>
-
     <Grid>
         <TabControl Margin="10">
             <TabItem Header="Users">

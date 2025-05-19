@@ -20,12 +20,20 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        InitializeComponent();
-        
-        // Initialize the database
-        DatabaseInitializer.Initialize();
-        
-        // Set up the view model
-        DataContext = new MainViewModel();
+        try
+        {
+            // Initialize the database first
+            DatabaseInitializer.Initialize();
+            
+            // Then initialize the component
+            InitializeComponent();
+            
+            // Finally set up the view model
+            DataContext = new MainViewModel();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error initializing application: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }
