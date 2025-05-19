@@ -26,4 +26,12 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="ShopDataLINQ.designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShopDataLINQ.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
