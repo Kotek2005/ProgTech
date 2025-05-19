@@ -9,8 +9,9 @@ namespace DataLayer
         public static void Initialize()
         {
             // Set the DataDirectory to the application's base directory
-            AppDomain.CurrentDomain.SetData("DataDirectory", 
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string dataDir = Path.Combine(baseDir, "..\\..\\..\\");
+            AppDomain.CurrentDomain.SetData("DataDirectory", dataDir);
 
             // Create the database if it doesn't exist
             using (var db = new ShopDataBaseDataContext(
