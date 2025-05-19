@@ -10,12 +10,11 @@ namespace DataLayer
         {
             try
             {
-                // Get the DataLayer project directory
+                // Get the output directory
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-                string dataDir = Path.GetFullPath(Path.Combine(baseDir, "..\\..\\..\\DataLayer"));
-                AppDomain.CurrentDomain.SetData("DataDirectory", dataDir);
+                AppDomain.CurrentDomain.SetData("DataDirectory", baseDir);
 
-                string dbPath = Path.Combine(dataDir, "DataShop.mdf");
+                string dbPath = Path.Combine(baseDir, "DataShop.mdf");
                 string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True";
 
                 // Create the database if it doesn't exist

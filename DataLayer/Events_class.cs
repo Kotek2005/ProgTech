@@ -31,8 +31,7 @@ namespace DataLayer
         public Events_class()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            string dataDir = Path.GetFullPath(Path.Combine(baseDir, "..\\..\\..\\DataLayer"));
-            string dbPath = Path.Combine(dataDir, "DataShop.mdf");
+            string dbPath = Path.Combine(baseDir, "DataShop.mdf");
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True";
             _db = new ShopDataBaseDataContext(connectionString);
         }
