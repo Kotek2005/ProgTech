@@ -76,9 +76,9 @@
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
                         <TextBlock Text="Product:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding StateViewModel.NewProductName}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding StateViewModel.NewProductName, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <TextBlock Text="Amount:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding StateViewModel.NewProductAmount}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding StateViewModel.NewProductAmount, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <Button Content="Add Stock" Command="{Binding StateViewModel.AddStockCommand}"/>
                     </StackPanel>
 
@@ -90,10 +90,10 @@
                                   DisplayMemberPath="product"
                                   Width="100" Margin="0,0,10,0"/>
                         <TextBlock Text="Buy Amount:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding StateViewModel.BuyAmount}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding StateViewModel.BuyAmount, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <Button Content="Buy" Command="{Binding StateViewModel.BuyCommand}" Margin="0,0,10,0"/>
                         <TextBlock Text="Supply Amount:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBox Text="{Binding StateViewModel.SupplyAmount}" Width="100" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding StateViewModel.SupplyAmount, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="0,0,10,0"/>
                         <Button Content="Supply" Command="{Binding StateViewModel.SupplyCommand}"/>
                     </StackPanel>
 
