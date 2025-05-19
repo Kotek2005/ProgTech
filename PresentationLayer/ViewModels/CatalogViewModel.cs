@@ -64,7 +64,13 @@ namespace PresentationLayer.ViewModels
 
         private bool CanAddProduct()
         {
-            return !string.IsNullOrWhiteSpace(NewProductName) && float.Parse(NewProductPrice) > 0;
+            if (string.IsNullOrWhiteSpace(NewProductName))
+                return false;
+            if (string.IsNullOrWhiteSpace(NewProductPrice))
+                return false;
+            if (!float.TryParse(NewProductPrice, out float price))
+                return false;
+            return price > 0;
         }
 
         private void RefreshProducts()
