@@ -7,13 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Mindbox.Data.Linq" Version="10.7.2" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Service Include="{3259aa49-8aa1-44d3-9025-a0b520596a8c}" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DataClassesSQL.dbml">
+    <Compile Update="ShopDataBase.designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShopDataBase.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ShopDataBase.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClassesSQL.designer.cs</LastGenOutput>
+      <LastGenOutput>ShopDataBase.designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

@@ -10,7 +10,7 @@ namespace PresentationLayer.ViewModels
         private readonly IEvents _events;
         private ObservableCollection<ProductModel> _products;
         private string _newProductName;
-        private float _newProductPrice;
+        private string _newProductPrice;
 
         public CatalogViewModel(IEvents events)
         {
@@ -41,7 +41,7 @@ namespace PresentationLayer.ViewModels
             }
         }
 
-        public float NewProductPrice
+        public string NewProductPrice
         {
             get => _newProductPrice;
             set
@@ -56,15 +56,15 @@ namespace PresentationLayer.ViewModels
 
         private void AddProduct()
         {
-            _events.Add2Cat(NewProductName, NewProductPrice);
+            _events.Add2Cat(NewProductName, float.Parse(NewProductPrice));
             RefreshProducts();
             NewProductName = string.Empty;
-            NewProductPrice = 0;
+            NewProductPrice = "";
         }
 
         private bool CanAddProduct()
         {
-            return !string.IsNullOrWhiteSpace(NewProductName) && NewProductPrice > 0;
+            return !string.IsNullOrWhiteSpace(NewProductName) && float.Parse(NewProductPrice) > 0;
         }
 
         private void RefreshProducts()
