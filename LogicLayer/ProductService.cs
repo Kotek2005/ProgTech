@@ -1,16 +1,32 @@
-﻿using DataLayer;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using DataLayer.Models;
+using DataLayer.Repositories;
 
-public class ProductService
+namespace LogicLayer
 {
-    private readonly IProductRepository _repo;
-
-    public ProductService(IProductRepository repo)
+    public class ProductService
     {
-        _repo = repo;
-    }
+        private readonly IProductRepository _repo;
 
-    public List<Product> LoadProducts() => _repo.GetAll();
-    public void Add(Product p) => _repo.Add(p);
-    public void Update(Product p) => _repo.Update(p);
-    public void Delete(int id) => _repo.Delete(id);
+        public ProductService(IProductRepository repo)
+        {
+            _repo = repo;
+        }
+
+        public async Task<IEnumerable<Product>> LoadProductsAsync() => 
+            await _repo.GetAllProductsAsync();
+
+        public async Task AddProductAsync(Product product) => 
+            await _repo.AddProductAsync(product);
+
+        public async Task UpdateProductAsync(Product product) => 
+            await _repo.UpdateProductAsync(product);
+
+        public async Task DeleteProductAsync(int id) => 
+            await _repo.DeleteProductAsync(id);
+
+        public async Task UpdateStockAsync(int productId, int quantity) => 
+            await _repo.UpdateStockAsync(productId, quantity);
+    }
 }

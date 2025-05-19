@@ -1,20 +1,38 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using DataLayer.Repositories;
+using DataLayer.Models;
+using LogicLayer;
 
-public class MainViewModel : INotifyPropertyChanged
+namespace PresentationLayer.ViewModels
 {
-    private readonly ProductService _service;
-    public ObservableCollection<Product> Products { get; set; }
-
-    public MainViewModel()
+    public class MainViewModel : INotifyPropertyChanged
     {
-        string connStr = @"Data Source=.;Initial Catalog=ShopDatabase;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
-        var repo = new ProductRepository(connStr);
-        _service = new ProductService(repo);
+        private readonly ProductService _service;
+        public ObservableCollection<Product> Products { get; set; }
 
-        Products = new ObservableCollection<Product>(_service.LoadProducts());
+        public MainViewModel(IProductRepository productRepository)
+        {
+            _service = new ProductService(productRepository);
+            Products = new ObservableCollection<Product>();
+            LoadProductsAsync().ConfigureAwait(false);
+        }
+
+        private async Task LoadProductsAsync()
+        {
+            var products = await _service.LoadProductsAsync();
+            Products.Clear();
+            foreach (var product in products)
+            {
+                Products.Add(product);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
-
-    // Tu dodasz RelayCommand, Add/Delete itd.
-    public event PropertyChangedEventHandler PropertyChanged;
 }
