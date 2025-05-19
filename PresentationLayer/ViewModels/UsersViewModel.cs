@@ -76,7 +76,7 @@ namespace PresentationLayer.ViewModels
             var users = _events.GetAllUsers();
             foreach (var user in users)
             {
-                Users.Add(new UserModel { id = user.Key, type = user.Value });
+                Users.Add(new UserModel { id = (int)user.Key, type = user.Value });
             }
         }
 

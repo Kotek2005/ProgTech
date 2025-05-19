@@ -115,7 +115,7 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product", DbType="VarChar(50) NOT NULL", IsPrimaryKey=true)]
 		public string Product
 		{
 			get
@@ -201,7 +201,7 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product", DbType="VarChar(50) NOT NULL", IsPrimaryKey=true)]
 		public string Product
 		{
 			get
@@ -268,7 +268,7 @@ namespace DataLayer
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id;
+		private System.Nullable<int> _Id;
 		
 		private string _Type;
 		
@@ -276,7 +276,7 @@ namespace DataLayer
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(int value);
+    partial void OnIdChanging(System.Nullable<int> value);
     partial void OnIdChanged();
     partial void OnTypeChanging(string value);
     partial void OnTypeChanged();
@@ -288,7 +288,7 @@ namespace DataLayer
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
+		public System.Nullable<int> Id
 		{
 			get
 			{

@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataShop" Class="ShopDataBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.Catalog" Member="Catalogs">
     <Type Name="Catalog">
-      <Column Name="Product" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Product" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="true" />
       <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.State" Member="States">
     <Type Name="State">
-      <Column Name="Product" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Product" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="true" />
       <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
     <Type Name="User">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="true" />
       <Column Name="Type" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </Type>
   </Table>

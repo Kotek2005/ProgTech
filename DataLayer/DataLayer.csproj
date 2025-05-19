@@ -25,6 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DataShop.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataShop_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="ShopDataBase.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>ShopDataBase.designer.cs</LastGenOutput>

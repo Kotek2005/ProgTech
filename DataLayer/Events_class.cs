@@ -18,9 +18,9 @@ namespace DataLayer
         void Add2Cat(string product, float price);
         void Add2Users(int id, string name);
         void Add2State(string product, int amount);
-        Dictionary<int, string> GetAllUsers();
-        Dictionary<string, float> GetAllProducts();
-        Dictionary<string, int> GetAllInventory();
+        Dictionary<int?, string> GetAllUsers();
+        Dictionary<string?, float> GetAllProducts();
+        Dictionary<string?, int> GetAllInventory();
         float GetCurrentCash();
     }
 
@@ -121,7 +121,7 @@ namespace DataLayer
             _db.SubmitChanges();
         }
 
-        public Dictionary<int, string> GetAllUsers()
+        public Dictionary<int?, string> GetAllUsers()
         {
             return _db.Users.ToDictionary(u => u.Id, u => u.Type);
         }
