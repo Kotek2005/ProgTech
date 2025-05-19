@@ -1,0 +1,21 @@
+CREATE DATABASE ShopDatabase;
+GO
+
+USE ShopDatabase;
+GO
+
+CREATE TABLE Users (
+    Id INT PRIMARY KEY,
+    Type NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Catalog (
+    ProductName NVARCHAR(100) PRIMARY KEY,
+    Price FLOAT NOT NULL
+);
+
+CREATE TABLE State (
+    ProductName NVARCHAR(100) PRIMARY KEY,
+    Amount INT NOT NULL,
+    Cash FLOAT NOT NULL
+); 
