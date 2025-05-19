@@ -12,7 +12,19 @@ namespace PresentationLayer.ViewModels
 
         public MainViewModel()
         {
+            // Create a new instance of Events_class for testing
             _events = new Events_class();
+            
+            // Initialize with some test data
+            _events.Add2Users(1, "Supplier");
+            _events.Add2Users(2, "Customer");
+            _events.Add2Cat("Apple", 2.50f);
+            _events.Add2Cat("Banana", 3.40f);
+            _events.Add2State("Apple", 10);
+            _events.Add2State("Banana", 15);
+            _events.AddMoney(100.0f);
+
+            // Initialize ViewModels
             UsersViewModel = new UsersViewModel(_events);
             CatalogViewModel = new CatalogViewModel(_events);
             StateViewModel = new StateViewModel(_events);
