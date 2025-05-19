@@ -1,20 +1,57 @@
-using System.Collections.ObjectModel;
 using System.ComponentModel;
+using DataLayer;
 
-public class MainViewModel : INotifyPropertyChanged
+namespace PresentationLayer.ViewModels
 {
-    private readonly ProductService _service;
-    public ObservableCollection<Product> Products { get; set; }
-
-    public MainViewModel()
+    public class MainViewModel : INotifyPropertyChanged
     {
-        string connStr = @"Data Source=.;Initial Catalog=ShopDatabase;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
-        var repo = new ProductRepository(connStr);
-        _service = new ProductService(repo);
+        private readonly IEvents _events;
+        private UsersViewModel _usersViewModel;
+        private CatalogViewModel _catalogViewModel;
+        private StateViewModel _stateViewModel;
 
-        Products = new ObservableCollection<Product>(_service.LoadProducts());
+        public MainViewModel()
+        {
+            _events = new Events_class();
+            UsersViewModel = new UsersViewModel(_events);
+            CatalogViewModel = new CatalogViewModel(_events);
+            StateViewModel = new StateViewModel(_events);
+        }
+
+        public UsersViewModel UsersViewModel
+        {
+            get => _usersViewModel;
+            set
+            {
+                _usersViewModel = value;
+                OnPropertyChanged(nameof(UsersViewModel));
+            }
+        }
+
+        public CatalogViewModel CatalogViewModel
+        {
+            get => _catalogViewModel;
+            set
+            {
+                _catalogViewModel = value;
+                OnPropertyChanged(nameof(CatalogViewModel));
+            }
+        }
+
+        public StateViewModel StateViewModel
+        {
+            get => _stateViewModel;
+            set
+            {
+                _stateViewModel = value;
+                OnPropertyChanged(nameof(StateViewModel));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
-
-    // Tu dodasz RelayCommand, Add/Delete itd.
-    public event PropertyChangedEventHandler PropertyChanged;
 }
