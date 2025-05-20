@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Reflection;
 
 namespace DataLayer
 {
@@ -23,17 +22,24 @@ namespace DataLayer
                     if (!db.DatabaseExists())
                     {
                         db.CreateDatabase();
-
-                        // Add some initial data
-                        db.Users.InsertOnSubmit(new User { Id = 1, Type = "Supplier" });
-                        db.Users.InsertOnSubmit(new User { Id = 2, Type = "Customer" });
-                        db.Catalogs.InsertOnSubmit(new Catalog { Product = "Apple", Price = 2.50 });
-                        db.Catalogs.InsertOnSubmit(new Catalog { Product = "Banana", Price = 3.40 });
-                        db.States.InsertOnSubmit(new State { Product = "Apple", Amount = 10 });
-                        db.States.InsertOnSubmit(new State { Product = "Banana", Amount = 15 });
-                        db.SubmitChanges();
                     }
                 }
+
+                // Initialize with default data using the repository
+                var repository = DataRepository.CreateNewRepository(connectionString);
+                repository.ClearAll();
+
+                // Add initial users
+                repository.AddUser(1, "Supplier");
+                repository.AddUser(2, "Customer");
+
+                // Add initial catalog items
+                repository.AddCatalog("Apple", 2.50f);
+                repository.AddCatalog("Banana", 3.40f);
+
+                // Add initial state
+                repository.AddState("Apple", 10);
+                repository.AddState("Banana", 15);
             }
             catch (Exception ex)
             {

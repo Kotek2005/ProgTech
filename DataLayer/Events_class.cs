@@ -26,126 +26,112 @@ namespace DataLayer
 
     public class Events_class : IEvents
     {
-        private readonly ShopDataBaseDataContext _db;
+        private readonly IDataRepository _repository;
+        private float _cash = 1000.0f; // Initial cash amount
 
         public Events_class()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
             string dbPath = Path.Combine(baseDir, "DataShop.mdf");
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True";
-            _db = new ShopDataBaseDataContext(connectionString);
+            _repository = DataRepository.CreateNewRepository(connectionString);
         }
 
         public string FindUser(int id)
         {
-            var user = _db.Users.FirstOrDefault(u => u.Id == id);
+            var user = _repository.GetUser(id);
             return user?.Type;
         }
 
         public bool CheckStock(string product, int amount)
         {
-            var state = _db.States.FirstOrDefault(s => s.Product == product);
+            var state = _repository.GetState(product);
             return state != null && state.Amount >= amount;
         }
 
         public bool CheckMoney(float price)
         {
-            // For now, we'll assume there's always enough money
-            return true;
+            return _cash >= price;
         }
 
         public float GetPrice(string product)
         {
-            var catalog = _db.Catalogs.FirstOrDefault(c => c.Product == product);
-            return catalog?.Price != null ? (float)catalog.Price : 0;
+            var catalog = _repository.GetCatalog(product);
+            return catalog != null ? (float)catalog.Price : 0f;
         }
 
         public void AddMoney(float profit)
         {
-            // This would need to be implemented if we add a Cash table
+            _cash += profit;
         }
 
         public void AddStock(string product, int amount)
         {
-            var state = _db.States.FirstOrDefault(s => s.Product == product);
+            var state = _repository.GetState(product);
             if (state != null)
             {
-                state.Amount += amount;
+                _repository.UpdateState(product, (state.Amount ?? 0) + amount);
             }
             else
             {
-                _db.States.InsertOnSubmit(new State { Product = product, Amount = amount });
+                _repository.AddState(product, amount);
             }
-            _db.SubmitChanges();
         }
 
         public void Add2Cat(string product, float price)
         {
-            var catalog = _db.Catalogs.FirstOrDefault(c => c.Product == product);
+            var catalog = _repository.GetCatalog(product);
             if (catalog != null)
             {
-                catalog.Price = price;
+                _repository.RemoveCatalog(product);
             }
-            else
-            {
-                _db.Catalogs.InsertOnSubmit(new Catalog { Product = product, Price = price });
-            }
-            _db.SubmitChanges();
+            _repository.AddCatalog(product, price);
         }
 
         public void Add2Users(int id, string type)
         {
-            var user = _db.Users.FirstOrDefault(u => u.Id == id);
+            var user = _repository.GetUser(id);
             if (user != null)
             {
-                user.Type = type;
+                _repository.RemoveUser(id);
             }
-            else
-            {
-                _db.Users.InsertOnSubmit(new User { Id = id, Type = type });
-            }
-            _db.SubmitChanges();
+            _repository.AddUser(id, type);
         }
 
         public void Add2State(string product, int amount)
         {
-            var state = _db.States.FirstOrDefault(s => s.Product == product);
+            var state = _repository.GetState(product);
             if (state != null)
             {
-                state.Amount = amount;
+                _repository.UpdateState(product, amount);
             }
             else
             {
-                _db.States.InsertOnSubmit(new State { Product = product, Amount = amount });
+                _repository.AddState(product, amount);
             }
-            _db.SubmitChanges();
         }
 
         public Dictionary<int?, string> GetAllUsers()
         {
-            return _db.Users
-                .Where(u => u.Id != null && u.Type != null)
-                .ToDictionary(u => u.Id, u => u.Type);
+            return _repository.GetAllUsers()
+                .ToDictionary(u => (int?)u.Id, u => u.Type);
         }
 
         public Dictionary<string?, float> GetAllProducts()
         {
-            return _db.Catalogs
-                .Where(c => c.Product != null && c.Price != null)
+            return _repository.GetAllCatalogs()
                 .ToDictionary(c => c.Product, c => (float)c.Price);
         }
 
         public Dictionary<string?, int> GetAllInventory()
         {
-            return _db.States
-                .Where(s => s.Product != null && s.Amount != null)
+            return _repository.GetAllStates()
                 .ToDictionary(s => s.Product, s => s.Amount ?? 0);
         }
 
         public float GetCurrentCash()
         {
-            // For now, return a fixed amount since we don't have a Cash table
-            return 1000.0f;
+            return _cash;
         }
     }
 }

@@ -13,14 +13,25 @@ namespace PresentationLayer.ViewModels
 
         public MainViewModel()
         {
-            // Create a new instance of Events_class that uses the database
-            var events = new Events_class();
-            _logicService = new LogicService(events);
-            
-            // Initialize ViewModels
-            UsersViewModel = new UsersViewModel(_logicService);
-            CatalogViewModel = new CatalogViewModel(_logicService);
-            StateViewModel = new StateViewModel(_logicService);
+            try
+            {
+                // Initialize the database first
+                DatabaseInitializer.Initialize();
+                
+                // Create a new instance of Events_class that uses the database
+                var events = new Events_class();
+                _logicService = new LogicService(events);
+                
+                // Initialize ViewModels
+                UsersViewModel = new UsersViewModel(_logicService);
+                CatalogViewModel = new CatalogViewModel(_logicService);
+                StateViewModel = new StateViewModel(_logicService);
+            }
+            catch (Exception ex)
+            {
+                // Log the error or show a message to the user
+                throw new Exception($"Failed to initialize MainViewModel: {ex.Message}", ex);
+            }
         }
 
         public UsersViewModel UsersViewModel
