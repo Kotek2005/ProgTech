@@ -81,7 +81,7 @@ namespace PresentationLayer.ViewModels
             return NewUserId > 0 && !string.IsNullOrWhiteSpace(NewUserType);
         }
 
-        private void RefreshUsers()
+        public void RefreshUsers()
         {
             Users.Clear();
             var users = _logicService.GetAllUsers();

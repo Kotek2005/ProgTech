@@ -144,7 +144,7 @@ namespace PresentationLayer.ViewModels
             return !string.IsNullOrWhiteSpace(SelectedProduct) && SupplyAmount > 0;
         }
 
-        private void RefreshState()
+        public void RefreshState()
         {
             Inventory.Clear();
             var inventory = _logicService.GetAllInventory();

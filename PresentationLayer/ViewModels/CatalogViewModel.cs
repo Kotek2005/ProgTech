@@ -73,7 +73,7 @@ namespace PresentationLayer.ViewModels
             return price > 0;
         }
 
-        private void RefreshProducts()
+        public void RefreshProducts()
         {
             Products.Clear();
             var products = _logicService.GetAllProducts();
