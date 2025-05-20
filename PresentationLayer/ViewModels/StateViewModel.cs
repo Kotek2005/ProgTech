@@ -7,7 +7,6 @@ namespace PresentationLayer.ViewModels
 {
     public class StateViewModel : INotifyPropertyChanged
     {
-        //jest logic abstract api
         private readonly ILogicService _logicService;
         private ObservableCollection<StateModel> _inventory;
         private float _currentCash;

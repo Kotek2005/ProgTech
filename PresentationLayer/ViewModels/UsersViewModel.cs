@@ -7,7 +7,6 @@ namespace PresentationLayer.ViewModels
 {
     public class UsersViewModel : INotifyPropertyChanged
     {
-        //logic abstract API
         private readonly ILogicService _logicService;
         private ObservableCollection<UserModel> _users;
         private UserModel _selectedUser;

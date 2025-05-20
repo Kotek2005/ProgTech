@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PresentationLayer.ViewModels;
 using DataLayer;
+using LogicLayer;
 
 namespace PresentationLayer;
 
@@ -28,8 +29,9 @@ public partial class MainWindow : Window
             // Then initialize the component
             InitializeComponent();
             
-            // Finally set up the view model
-            DataContext = new MainViewModel();
+            // Get the logic service from ServiceLocator and create MainViewModel
+            ILogicService logicService = ServiceLocator.GetLogicService();
+            DataContext = new MainViewModel(logicService);
         }
         catch (Exception ex)
         {

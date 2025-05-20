@@ -111,7 +111,6 @@ namespace DataLayer
             }
         }
 
-        //LINQ query syntax
         public Dictionary<int?, string> GetAllUsers()
         {
             var users = from u in _repository.GetAllUsers()

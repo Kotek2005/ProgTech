@@ -1,34 +1,23 @@
 using System.ComponentModel;
-using DataLayer;
 using LogicLayer;
 
 namespace PresentationLayer.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        //uses logic layer abstract API
-        private readonly ILogicService _logicService; //readonly dziala
+        private readonly ILogicService _logicService;
         private UsersViewModel _usersViewModel;
         private CatalogViewModel _catalogViewModel;
         private StateViewModel _stateViewModel;
 
-        public MainViewModel() //jest na tyle nullable ze dziala
+        public MainViewModel(ILogicService logicService)
         {
-            try
-            {
-                DatabaseInitializer.Initialize();
-
-                var events = new Events_class();
-                _logicService = new LogicService(events);
-                
-                UsersViewModel = new UsersViewModel(_logicService);
-                CatalogViewModel = new CatalogViewModel(_logicService);
-                StateViewModel = new StateViewModel(_logicService);
-            }
-            catch (Exception ex) //jak cos wywala idk
-            {
-                throw new Exception($"Failed to initialize MainViewModel: {ex.Message}", ex);
-            }
+            _logicService = logicService;
+            
+            // Initialize ViewModels
+            UsersViewModel = new UsersViewModel(_logicService);
+            CatalogViewModel = new CatalogViewModel(_logicService);
+            StateViewModel = new StateViewModel(_logicService);
         }
 
         public UsersViewModel UsersViewModel

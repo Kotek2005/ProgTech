@@ -47,7 +47,6 @@ namespace DataLayer
             _db.SubmitChanges();
         }
 
-        //LINQ method syntax
         public Catalog GetCatalog(string product)
         {
             return _db.Catalogs.FirstOrDefault(c => c.Product == product);
