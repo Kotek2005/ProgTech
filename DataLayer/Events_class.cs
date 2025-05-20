@@ -113,20 +113,23 @@ namespace DataLayer
 
         public Dictionary<int?, string> GetAllUsers()
         {
-            return _repository.GetAllUsers()
-                .ToDictionary(u => (int?)u.Id, u => u.Type);
+            var users = from u in _repository.GetAllUsers()
+                       select new { Id = (int?)u.Id, Type = u.Type };
+            return users.ToDictionary(u => u.Id, u => u.Type);
         }
 
         public Dictionary<string?, float> GetAllProducts()
         {
-            return _repository.GetAllCatalogs()
-                .ToDictionary(c => c.Product, c => (float)c.Price);
+            var products = from c in _repository.GetAllCatalogs()
+                          select new { Product = c.Product, Price = (float)c.Price };
+            return products.ToDictionary(p => p.Product, p => p.Price);
         }
 
         public Dictionary<string?, int> GetAllInventory()
         {
-            return _repository.GetAllStates()
-                .ToDictionary(s => s.Product, s => s.Amount ?? 0);
+            var inventory = from s in _repository.GetAllStates()
+                           select new { Product = s.Product, Amount = s.Amount ?? 0 };
+            return inventory.ToDictionary(i => i.Product, i => i.Amount);
         }
 
         public float GetCurrentCash()

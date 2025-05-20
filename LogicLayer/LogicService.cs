@@ -26,9 +26,10 @@ namespace LogicLayer
 
         public Dictionary<string, float> GetAllProducts()
         {
-            return _events.GetAllProducts()
-                .Where(kvp => kvp.Key != null)
-                .ToDictionary(kvp => kvp.Key!, kvp => kvp.Value);
+            var products = from kvp in _events.GetAllProducts()
+                         where kvp.Key != null
+                         select new { Key = kvp.Key!, Value = kvp.Value };
+            return products.ToDictionary(p => p.Key, p => p.Value);
         }
 
         public void AddSupply(string productName, int quantity)
@@ -54,9 +55,10 @@ namespace LogicLayer
 
         public Dictionary<int, string> GetAllUsers()
         {
-            return _events.GetAllUsers()
-                .Where(kvp => kvp.Key != null)
-                .ToDictionary(kvp => kvp.Key!.Value, kvp => kvp.Value);
+            var users = from kvp in _events.GetAllUsers()
+                       where kvp.Key != null
+                       select new { Key = kvp.Key!.Value, Value = kvp.Value };
+            return users.ToDictionary(u => u.Key, u => u.Value);
         }
 
         public void AddToState(string productName, int amount)
@@ -66,9 +68,10 @@ namespace LogicLayer
 
         public Dictionary<string, int> GetAllInventory()
         {
-            return _events.GetAllInventory()
-                .Where(kvp => kvp.Key != null)
-                .ToDictionary(kvp => kvp.Key!, kvp => kvp.Value);
+            var inventory = from kvp in _events.GetAllInventory()
+                           where kvp.Key != null
+                           select new { Key = kvp.Key!, Value = kvp.Value };
+            return inventory.ToDictionary(i => i.Key, i => i.Value);
         }
 
         public float GetCurrentCash()
