@@ -1,16 +1,13 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using DataLayer;
 using LogicLayer;
 
 namespace PresentationLayer.ViewModels
 {
     public class StateViewModel : INotifyPropertyChanged
     {
-        private readonly IEvents _events;
-        private readonly Buy_class _buyer;
-        private readonly Supply_class _supplier;
+        private readonly ILogicService _logicService;
         private ObservableCollection<StateModel> _inventory;
         private float _currentCash;
         private string _newProductName;
@@ -19,11 +16,9 @@ namespace PresentationLayer.ViewModels
         private int _buyAmount;
         private int _supplyAmount;
 
-        public StateViewModel(IEvents events)
+        public StateViewModel(ILogicService logicService)
         {
-            _events = events;
-            _buyer = new Buy_class(events);
-            _supplier = new Supply_class(events);
+            _logicService = logicService;
             Inventory = new ObservableCollection<StateModel>();
             AddStockCommand = new RelayCommand(AddStock, CanAddStock);
             BuyCommand = new RelayCommand(Buy, CanBuy);
@@ -112,7 +107,7 @@ namespace PresentationLayer.ViewModels
 
         private void AddStock()
         {
-            _events.Add2State(NewProductName, NewProductAmount);
+            _logicService.AddToState(NewProductName, NewProductAmount);
             RefreshState();
             NewProductName = string.Empty;
             NewProductAmount = 0;
@@ -125,7 +120,7 @@ namespace PresentationLayer.ViewModels
 
         private void Buy()
         {
-            if (_buyer.Buy(SelectedProduct, BuyAmount))
+            if (_logicService.BuyProduct(SelectedProduct, BuyAmount))
             {
                 RefreshState();
                 BuyAmount = 0;
@@ -139,11 +134,9 @@ namespace PresentationLayer.ViewModels
 
         private void Supply()
         {
-            if (_supplier.Supply(SelectedProduct, SupplyAmount))
-            {
-                RefreshState();
-                SupplyAmount = 0;
-            }
+            _logicService.AddSupply(SelectedProduct, SupplyAmount);
+            RefreshState();
+            SupplyAmount = 0;
         }
 
         private bool CanSupply()
@@ -154,12 +147,12 @@ namespace PresentationLayer.ViewModels
         private void RefreshState()
         {
             Inventory.Clear();
-            var inventory = _events.GetAllInventory();
+            var inventory = _logicService.GetAllInventory();
             foreach (var item in inventory)
             {
                 Inventory.Add(new StateModel { product = item.Key, amount = item.Value });
             }
-            CurrentCash = _events.GetCurrentCash();
+            CurrentCash = _logicService.GetCurrentCash();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

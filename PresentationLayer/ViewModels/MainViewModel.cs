@@ -1,11 +1,12 @@
 using System.ComponentModel;
 using DataLayer;
+using LogicLayer;
 
 namespace PresentationLayer.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private readonly IEvents _events;
+        private readonly ILogicService _logicService;
         private UsersViewModel _usersViewModel;
         private CatalogViewModel _catalogViewModel;
         private StateViewModel _stateViewModel;
@@ -13,12 +14,13 @@ namespace PresentationLayer.ViewModels
         public MainViewModel()
         {
             // Create a new instance of Events_class that uses the database
-            _events = new Events_class();
+            var events = new Events_class();
+            _logicService = new LogicService(events);
             
             // Initialize ViewModels
-            UsersViewModel = new UsersViewModel(_events);
-            CatalogViewModel = new CatalogViewModel(_events);
-            StateViewModel = new StateViewModel(_events);
+            UsersViewModel = new UsersViewModel(_logicService);
+            CatalogViewModel = new CatalogViewModel(_logicService);
+            StateViewModel = new StateViewModel(_logicService);
         }
 
         public UsersViewModel UsersViewModel

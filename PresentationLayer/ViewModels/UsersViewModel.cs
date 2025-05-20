@@ -1,22 +1,22 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using DataLayer;
+using LogicLayer;
 
 namespace PresentationLayer.ViewModels
 {
     public class UsersViewModel : INotifyPropertyChanged
     {
-        private readonly IEvents _events;
+        private readonly ILogicService _logicService;
         private ObservableCollection<UserModel> _users;
         private int _selectedUserId;
         private string _selectedUserType;
         private int _newUserId;
         private string _newUserType;
 
-        public UsersViewModel(IEvents events)
+        public UsersViewModel(ILogicService logicService)
         {
-            _events = events;
+            _logicService = logicService;
             Users = new ObservableCollection<UserModel>();
             AddUserCommand = new RelayCommand(AddUser, CanAddUser);
             RefreshUsers();
@@ -58,7 +58,7 @@ namespace PresentationLayer.ViewModels
 
         private void AddUser()
         {
-            _events.Add2Users(NewUserId, NewUserType);
+            _logicService.AddUser(NewUserId, NewUserType);
             RefreshUsers();
             NewUserId = 0;
             NewUserType = string.Empty;
@@ -72,11 +72,10 @@ namespace PresentationLayer.ViewModels
         private void RefreshUsers()
         {
             Users.Clear();
-            // Get users from Events_class
-            var users = _events.GetAllUsers();
+            var users = _logicService.GetAllUsers();
             foreach (var user in users)
             {
-                Users.Add(new UserModel { id = (int)user.Key, type = user.Value });
+                Users.Add(new UserModel { id = user.Key, type = user.Value });
             }
         }
 

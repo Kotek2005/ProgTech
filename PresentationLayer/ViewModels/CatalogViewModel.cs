@@ -1,20 +1,20 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using DataLayer;
+using LogicLayer;
 
 namespace PresentationLayer.ViewModels
 {
     public class CatalogViewModel : INotifyPropertyChanged
     {
-        private readonly IEvents _events;
+        private readonly ILogicService _logicService;
         private ObservableCollection<ProductModel> _products;
         private string _newProductName;
         private string _newProductPrice;
 
-        public CatalogViewModel(IEvents events)
+        public CatalogViewModel(ILogicService logicService)
         {
-            _events = events;
+            _logicService = logicService;
             Products = new ObservableCollection<ProductModel>();
             AddProductCommand = new RelayCommand(AddProduct, CanAddProduct);
             RefreshProducts();
@@ -56,7 +56,7 @@ namespace PresentationLayer.ViewModels
 
         private void AddProduct()
         {
-            _events.Add2Cat(NewProductName, float.Parse(NewProductPrice));
+            _logicService.AddProduct(NewProductName, float.Parse(NewProductPrice));
             RefreshProducts();
             NewProductName = string.Empty;
             NewProductPrice = "";
@@ -76,8 +76,7 @@ namespace PresentationLayer.ViewModels
         private void RefreshProducts()
         {
             Products.Clear();
-            // Get products from Events_class
-            var products = _events.GetAllProducts();
+            var products = _logicService.GetAllProducts();
             foreach (var product in products)
             {
                 Products.Add(new ProductModel { name = product.Key, price = product.Value });
