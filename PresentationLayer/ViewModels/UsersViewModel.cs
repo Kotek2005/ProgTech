@@ -9,8 +9,7 @@ namespace PresentationLayer.ViewModels
     {
         private readonly ILogicService _logicService;
         private ObservableCollection<UserModel> _users;
-        private int _selectedUserId;
-        private string _selectedUserType;
+        private UserModel _selectedUser;
         private int _newUserId;
         private string _newUserType;
 
@@ -31,6 +30,19 @@ namespace PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(Users));
             }
         }
+
+        public UserModel SelectedUser
+        {
+            get => _selectedUser;
+            set
+            {
+                _selectedUser = value;
+                OnPropertyChanged(nameof(SelectedUser));
+                OnPropertyChanged(nameof(SelectedUserType));
+            }
+        }
+
+        public string SelectedUserType => SelectedUser?.type ?? "No user selected";
 
         public int NewUserId
         {
