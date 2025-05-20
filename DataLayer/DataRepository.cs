@@ -19,7 +19,7 @@ namespace DataLayer
             _db.Users.InsertOnSubmit(user);
             _db.SubmitChanges();
         }
-
+        //LINQ method syntax musi byc
         public User GetUser(int id)
         {
             return _db.Users.FirstOrDefault(u => u.Id == id);

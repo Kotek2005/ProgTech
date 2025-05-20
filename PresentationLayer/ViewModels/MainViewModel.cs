@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using LogicLayer;
-
+//only logic (abstract) no data layer (dependency injection)
 namespace PresentationLayer.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
@@ -14,7 +14,6 @@ namespace PresentationLayer.ViewModels
         {
             _logicService = logicService;
             
-            // Initialize ViewModels
             UsersViewModel = new UsersViewModel(_logicService);
             CatalogViewModel = new CatalogViewModel(_logicService);
             StateViewModel = new StateViewModel(_logicService);

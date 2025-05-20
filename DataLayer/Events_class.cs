@@ -27,7 +27,7 @@ namespace DataLayer
     public class Events_class : IEvents
     {
         private readonly IDataRepository _repository;
-        private float _cash = 1000.0f; // Initial cash amount
+        private float _cash = 100.0f; //kasa poza bazen danen bo to nie w tabelce
 
         public Events_class()
         {
@@ -110,7 +110,7 @@ namespace DataLayer
                 _repository.AddState(product, amount);
             }
         }
-
+        //LINQ query syntax wazne
         public Dictionary<int?, string> GetAllUsers()
         {
             var users = from u in _repository.GetAllUsers()
