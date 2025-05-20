@@ -31,13 +31,6 @@ namespace LogicLayer
                 .ToDictionary(kvp => kvp.Key!, kvp => kvp.Value);
         }
 
-        public bool RemoveProduct(string name)
-        {
-            // Since there's no direct remove method, we'll set the price to 0
-            _events.Add2Cat(name, 0);
-            return true;
-        }
-
         public void AddSupply(string productName, int quantity)
         {
             _supplyService.Supply(productName, quantity);
@@ -52,20 +45,6 @@ namespace LogicLayer
         public bool BuyProduct(string productName, int quantity)
         {
             return _buyService.Buy(productName, quantity);
-        }
-
-        public bool ValidateUser(string username, string password)
-        {
-            // Since Login_class doesn't have these methods, we'll need to implement them
-            // For now, we'll use a simple validation
-            return !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password);
-        }
-
-        public bool RegisterUser(string username, string password)
-        {
-            // Since Login_class doesn't have these methods, we'll need to implement them
-            // For now, we'll just return true
-            return true;
         }
 
         public void AddUser(int userId, string userType)
