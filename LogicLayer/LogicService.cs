@@ -4,6 +4,7 @@ using DataLayer;
 
 namespace LogicLayer
 {
+    //Abstract API wchodzi
     public class LogicService : ILogicService
     {
         private readonly IEvents _events;
@@ -23,7 +24,7 @@ namespace LogicLayer
         {
             _events.Add2Cat(name, price);
         }
-
+        //Wiecej LINQ query
         public Dictionary<string, float> GetAllProducts()
         {
             var products = from kvp in _events.GetAllProducts()
@@ -36,12 +37,6 @@ namespace LogicLayer
         {
             _supplyService.Supply(productName, quantity);
         }
-
-        /*public int GetProductQuantity(string productName)
-        {
-            var inventory = _events.GetAllInventory();
-            return inventory.TryGetValue(productName, out int amount) ? amount : 0;
-        }*/
 
         public bool BuyProduct(string productName, int quantity)
         {

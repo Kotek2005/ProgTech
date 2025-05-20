@@ -6,16 +6,16 @@ GO
 
 CREATE TABLE Users (
     Id INT PRIMARY KEY,
-    Type NVARCHAR(50) NOT NULL
+    Type NVARCHAR(50)
 );
 
 CREATE TABLE Catalog (
     ProductName NVARCHAR(100) PRIMARY KEY,
-    Price FLOAT NOT NULL
+    Price FLOAT
 );
 
 CREATE TABLE State (
     ProductName NVARCHAR(100) PRIMARY KEY,
-    Amount INT NOT NULL,
-    Cash FLOAT NOT NULL
+    Amount INT,
+    Cash FLOAT
 ); 

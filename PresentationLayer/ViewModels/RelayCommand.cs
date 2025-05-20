@@ -21,5 +21,4 @@ public class RelayCommand : ICommand
         remove { CommandManager.RequerySuggested -= value; }
     }
 }
-
-//taken from internet for now xd
+//chyba dziala

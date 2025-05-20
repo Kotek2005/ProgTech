@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PresentationLayer"
         xmlns:viewmodels="clr-namespace:PresentationLayer.ViewModels"
         mc:Ignorable="d"
-        Title="Shop Management System" Height="600" Width="1000">
+        Title="Shop Management System" Height="300" Width="700">
     
     <Grid>
         <TabControl Margin="10">

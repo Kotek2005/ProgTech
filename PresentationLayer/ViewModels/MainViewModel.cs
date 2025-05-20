@@ -6,30 +6,27 @@ namespace PresentationLayer.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private readonly ILogicService _logicService;
+        //uses logic layer abstract API
+        private readonly ILogicService _logicService; //readonly dziala
         private UsersViewModel _usersViewModel;
         private CatalogViewModel _catalogViewModel;
         private StateViewModel _stateViewModel;
 
-        public MainViewModel()
+        public MainViewModel() //jest na tyle nullable ze dziala
         {
             try
             {
-                // Initialize the database first
                 DatabaseInitializer.Initialize();
-                
-                // Create a new instance of Events_class that uses the database
+
                 var events = new Events_class();
                 _logicService = new LogicService(events);
                 
-                // Initialize ViewModels
                 UsersViewModel = new UsersViewModel(_logicService);
                 CatalogViewModel = new CatalogViewModel(_logicService);
                 StateViewModel = new StateViewModel(_logicService);
             }
-            catch (Exception ex)
+            catch (Exception ex) //jak cos wywala idk
             {
-                // Log the error or show a message to the user
                 throw new Exception($"Failed to initialize MainViewModel: {ex.Message}", ex);
             }
         }
