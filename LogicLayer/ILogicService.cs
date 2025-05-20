@@ -10,7 +10,7 @@ namespace LogicLayer
         
         // Supply operations
         void AddSupply(string productName, int quantity);
-        int GetProductQuantity(string productName);
+        //int GetProductQuantity(string productName);
         
         // Buy operations
         bool BuyProduct(string productName, int quantity);

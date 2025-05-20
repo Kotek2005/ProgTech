@@ -36,11 +36,11 @@ namespace LogicLayer
             _supplyService.Supply(productName, quantity);
         }
 
-        public int GetProductQuantity(string productName)
+        /*public int GetProductQuantity(string productName)
         {
             var inventory = _events.GetAllInventory();
             return inventory.TryGetValue(productName, out int amount) ? amount : 0;
-        }
+        }*/
 
         public bool BuyProduct(string productName, int quantity)
         {
